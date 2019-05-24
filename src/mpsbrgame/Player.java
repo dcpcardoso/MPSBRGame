@@ -46,5 +46,8 @@ public class Player {
            return 0;
     }
     
+    public Card getCard(int posicao) {
+       return hand.get(posicao);
+    }
     
 }
