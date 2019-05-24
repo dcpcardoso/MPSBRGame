@@ -45,4 +45,10 @@ public class Game {
         return "Someone wins";
     }
 
+   public Player jogar(Card c1, Card c2){
+       if (c1.getValue() > c2.getValue())
+           return players.get(0);
+       else
+           return players.get(1);
+   }
 }
