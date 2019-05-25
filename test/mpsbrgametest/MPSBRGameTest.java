@@ -29,19 +29,29 @@ public class MPSBRGameTest {
     jogo.addPlayer(p2);
     
     p1.takeCard(new Card(Suit.CLUBS, Rank.FOUR));
-    p1.takeCard(new Card(Suit.CLUBS, Rank.FIVE));
-    p1.takeCard(new Card(Suit.CLUBS, Rank.SIX));
+    p1.takeCard(new Card(Suit.SPADES, Rank.FIVE));
+    p1.takeCard(new Card(Suit.HEARTS, Rank.SIX));
     
-    p2.takeCard(new Card(Suit.CLUBS, Rank.FIVE));
+    p2.takeCard(new Card(Suit.DIAMONDS, Rank.FIVE));
     p2.takeCard(new Card(Suit.CLUBS, Rank.FOUR));
-    p2.takeCard(new Card(Suit.CLUBS, Rank.SEVEN));
+    p2.takeCard(new Card(Suit.HEARTS, Rank.SEVEN));
     
     
     }
     
     @Test
     public void testaJogarSimples(){
-        Player ganhador = jogo.jogar(p1.getCard(1), p2.getCard(1));
+        Player ganhador = jogo.playCards(p1.getCard(0), p2.getCard(0));
+        assertEquals(p2, ganhador);
+        
+        ganhador = jogo.playCards(p1.getCard(0), p2.getCard(0));
         assertEquals(p1, ganhador);
+        
+        ganhador = jogo.playCards(p1.getCard(0), p2.getCard(0));
+        assertEquals(p2, ganhador);
+        
+        ganhador = jogo.declareWinner();
+        assertEquals(p2, ganhador);
+        
     }
 }
