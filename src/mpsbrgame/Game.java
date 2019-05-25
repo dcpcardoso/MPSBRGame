@@ -44,11 +44,32 @@ public class Game {
         }
         return "Someone wins";
     }
+    
+    public void increaseScore(Player player){
+        player.score++;
+    } 
 
-   public Player jogar(Card c1, Card c2){
-       if (c1.getValue() > c2.getValue())
-           return players.get(0);
-       else
-           return players.get(1);
-   }
+   public Player playCards(Card c1, Card c2){
+        players.get(0).discardFromHand(c1);
+        players.get(1).discardFromHand(c2);
+        if (c1.getValue() > c2.getValue()){
+            this.increaseScore(players.get(0));
+            return players.get(0);   
+        }else{
+            this.increaseScore(players.get(1));
+            return players.get(1);
+        }
+    }
+   
+   public Player declareWinner(){
+       int high = 0;
+       Player winner = null;
+        for(Player player : players ){
+            if(player.getScore() > high){
+                high = player.getScore();
+                winner = player;
+            }      
+        }
+       return winner;
+   }    
 }
