@@ -15,10 +15,12 @@ public class Player {
 
     private ArrayList<Card> hand;
     private String name;
+    public  int score;
 
     public Player(String name){
         this.hand = new ArrayList<>();
         this.name = name;
+        this.score = 0;
     }
 
 
@@ -39,15 +41,23 @@ public class Player {
         return cardValues;
     }
 
-    public int playCard(Card carta) {
-       if( hand.contains(carta) )
-           return carta.getValue();
+    public int playCard(Card card) {
+       if( hand.contains(card) )
+           return card.getValue();
        else
            return 0;
     }
     
-    public Card getCard(int posicao) {
-       return hand.get(posicao);
+    public Card getCard(int position) {
+       return hand.get(position);
     }
     
+    public void discardFromHand(Card card){
+        hand.remove(card);
+    }
+    
+    public int getScore(){
+        return this.score;
+    }
+   
 }
